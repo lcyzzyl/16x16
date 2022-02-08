@@ -1,0 +1,333 @@
+BL51 BANKED LINKER/LOCATER V6.05                                                        12/08/2021  00:00:57  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.05, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE STARTUP.obj, static.obj TO static RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  STARTUP.obj (?C_STARTUP)
+  static.obj (STATIC)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?IMUL)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?SIDIV)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?UIDIV)
+
+
+LINK MAP OF MODULE:  static (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     000AH     UNIT         _DATA_GROUP_
+            DATA    0012H     0004H     UNIT         ?DT?_SHOW_595_YLINE?STATIC
+            DATA    0016H     0002H     UNIT         ?DT?_SHOW_595_LINE?STATIC
+            DATA    0018H     0002H     UNIT         ?DT?STATIC
+            IDATA   001AH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     00D8H     UNIT         ?PR?MAIN?STATIC
+            CODE    08D8H     009DH     UNIT         ?C?LIB_CODE
+            CODE    0975H     008CH     UNIT         ?C_C51STARTUP
+            CODE    0A01H     0087H     UNIT         ?PR?_SHOW_595_XLINE?STATIC
+            CODE    0A88H     0040H     UNIT         ?PR?_SHOW_595_LINE?STATIC
+            CODE    0AC8H     003FH     UNIT         ?PR?_SHOW_595_YLINE?STATIC
+            CODE    0B07H     0038H     UNIT         ?PR?_SHOW_595_POINT?STATIC
+            CODE    0B3FH     0030H     UNIT         ?CO?STATIC
+            CODE    0B6FH     0027H     UNIT         ?PR?_SHOW_595_16?STATIC
+            CODE    0B96H     0023H     UNIT         ?PR?SHOW_595_CLEAR?STATIC
+            CODE    0BB9H     001EH     UNIT         ?PR?_DELAY?STATIC
+            CODE    0BD7H     0019H     UNIT         ?PR?_SEND_595?STATIC
+            CODE    0BF0H     0005H     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   static (?C_STARTUP)
+
+
+SEGMENT                              DATA_GROUP 
+  +--> CALLED SEGMENT              START    LENGTH
+--------------------------------------------------
+?C_C51STARTUP                      -----    -----
+  +--> ?PR?MAIN?STATIC
+  +--> ?C_INITSEG
+BL51 BANKED LINKER/LOCATER V6.05                                                      12/08/2021  00:00:57  PAGE 2
+
+
+
+?PR?MAIN?STATIC                    0008H    0002H
+  +--> ?PR?_SHOW_595_XLINE?STATIC
+
+?PR?_SHOW_595_XLINE?STATIC         000AH    0008H
+  +--> ?PR?_SHOW_595_POINT?STATIC
+
+?PR?_SHOW_595_POINT?STATIC         -----    -----
+  +--> ?CO?STATIC
+  +--> ?PR?_SHOW_595_16?STATIC
+
+?PR?_SHOW_595_16?STATIC            -----    -----
+  +--> ?CO?STATIC
+  +--> ?PR?_SEND_595?STATIC
+  +--> ?PR?_DELAY?STATIC
+
+
+
+SYMBOL TABLE OF MODULE:  static (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:0975H         SEGMENT       ?C_C51STARTUP
+  I:001AH         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:0978H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0000H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:0975H         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         92
+  C:0975H         LINE#         99
+  C:0977H         LINE#         100
+  C:0978H         LINE#         101
+  C:0979H         LINE#         102
+  C:097BH         LINE#         151
+  C:097EH         LINE#         155
+  -------         ENDMOD        ?C_STARTUP
+
+BL51 BANKED LINKER/LOCATER V6.05                                                      12/08/2021  00:00:57  PAGE 3
+
+
+  -------         MODULE        STATIC
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  C:0B3FH         PUBLIC        table
+  D:00A8H         PUBLIC        IE
+  C:0BD7H         PUBLIC        _Send_595
+  D:0018H         PUBLIC        yanshi
+  C:0B96H         PUBLIC        Show_595_clear
+  C:0BB9H         PUBLIC        _delay
+  D:00B8H         PUBLIC        IP
+  B:0080H.1       PUBLIC        P_HC595_RCK
+  B:0080H.0       PUBLIC        P_HC595_SCK
+  C:0800H         PUBLIC        main
+  C:0A01H         PUBLIC        _Show_595_xline
+  C:0B4FH         PUBLIC        table_col
+  B:0080H.2       PUBLIC        P_HC595_SER
+  C:0AC8H         PUBLIC        _Show_595_yline
+  C:0A88H         PUBLIC        _Show_595_line
+  D:0098H         PUBLIC        SCON
+  C:0B07H         PUBLIC        _Show_595_point
+  D:0088H         PUBLIC        TCON
+  D:00C8H         PUBLIC        T2CON
+  C:0B7FH         PUBLIC        _Show_595_16
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        x
+  -------         DO            
+  D:0006H         SYMBOL        i
+  D:0004H         SYMBOL        j
+  -------         ENDDO         
+  C:0BB9H         LINE#         43
+  C:0BB9H         LINE#         44
+  C:0BB9H         LINE#         46
+  C:0BC2H         LINE#         47
+  C:0BD6H         LINE#         48
+  -------         ENDPROC       _DELAY
+  -------         PROC          _SEND_595
+  D:0007H         SYMBOL        dat
+  -------         DO            
+  D:0006H         SYMBOL        i
+  -------         ENDDO         
+  C:0BD7H         LINE#         53
+  C:0BD7H         LINE#         54
+  C:0BD7H         LINE#         56
+  C:0BD9H         LINE#         57
+  C:0BD9H         LINE#         58
+  C:0BDDH         LINE#         66
+  C:0BE1H         LINE#         68
+  C:0BE3H         LINE#         73
+  C:0BE5H         LINE#         74
+  C:0BE7H         LINE#         76
+  C:0BEBH         LINE#         79
+  C:0BEFH         LINE#         82
+  -------         ENDPROC       _SEND_595
+  -------         PROC          L?0067
+BL51 BANKED LINKER/LOCATER V6.05                                                      12/08/2021  00:00:57  PAGE 4
+
+
+  -------         ENDPROC       L?0067
+  -------         PROC          _SHOW_595_16
+  D:0003H         SYMBOL        dat1
+  D:0004H         SYMBOL        dat2
+  C:0B7FH         LINE#         84
+  C:0B81H         LINE#         87
+  C:0B81H         LINE#         89
+  C:0B86H         LINE#         90
+  C:0B8BH         LINE#         94
+  C:0B8DH         LINE#         96
+  C:0B8FH         LINE#         98
+  -------         ENDPROC       _SHOW_595_16
+  -------         PROC          SHOW_595_CLEAR
+  -------         DO            
+  D:0003H         SYMBOL        j
+  -------         ENDDO         
+  C:0B96H         LINE#         103
+  C:0B96H         LINE#         105
+  C:0B96H         LINE#         109
+  C:0B98H         LINE#         110
+  C:0B98H         LINE#         111
+  C:0B9FH         LINE#         114
+  C:0BA4H         LINE#         115
+  C:0BA9H         LINE#         118
+  C:0BABH         LINE#         120
+  C:0BADH         LINE#         123
+  C:0BB4H         LINE#         126
+  C:0BB8H         LINE#         128
+  -------         ENDPROC       SHOW_595_CLEAR
+  -------         PROC          _SHOW_595_POINT
+  D:0002H         SYMBOL        x
+  D:0004H         SYMBOL        y
+  C:0B07H         LINE#         147
+  C:0B0BH         LINE#         149
+  C:0B0BH         LINE#         151
+  C:0B19H         LINE#         153
+  -------         ENDPROC       _SHOW_595_POINT
+  -------         PROC          _SHOW_595_LINE
+  D:0001H         SYMBOL        x1
+  D:0016H         SYMBOL        x2
+  D:0002H         SYMBOL        y
+  -------         DO            
+  D:0001H         SYMBOL        i
+  -------         ENDDO         
+  C:0A88H         LINE#         173
+  C:0A8EH         LINE#         175
+  C:0A8EH         LINE#         179
+  C:0A9CH         LINE#         182
+  C:0AB1H         LINE#         184
+  C:0AB1H         LINE#         187
+  C:0AC4H         LINE#         191
+  C:0AC7H         LINE#         195
+  -------         ENDPROC       _SHOW_595_LINE
+  -------         PROC          _SHOW_595_YLINE
+  D:0006H         SYMBOL        x
+  D:0012H         SYMBOL        y1
+  D:0014H         SYMBOL        y2
+BL51 BANKED LINKER/LOCATER V6.05                                                      12/08/2021  00:00:57  PAGE 5
+
+
+  -------         DO            
+  D:0007H         SYMBOL        i
+  -------         ENDDO         
+  C:0AC8H         LINE#         210
+  C:0AD2H         LINE#         212
+  C:0AD2H         LINE#         216
+  C:0AE5H         LINE#         219
+  C:0AFCH         LINE#         221
+  C:0AFCH         LINE#         224
+  C:0B03H         LINE#         228
+  C:0B06H         LINE#         232
+  -------         ENDPROC       _SHOW_595_YLINE
+  -------         PROC          _SHOW_595_XLINE
+  D:000AH         SYMBOL        x1
+  D:000BH         SYMBOL        y1
+  D:000DH         SYMBOL        x2
+  D:000FH         SYMBOL        y2
+  -------         DO            
+  D:0011H         SYMBOL        i
+  -------         ENDDO         
+  C:0A01H         LINE#         236
+  C:0A0BH         LINE#         238
+  C:0A0BH         LINE#         241
+  C:0A24H         LINE#         243
+  C:0A24H         LINE#         245
+  C:0A83H         LINE#         248
+  C:0A87H         LINE#         256
+  -------         ENDPROC       _SHOW_595_XLINE
+  -------         PROC          MAIN
+  -------         DO            
+  D:0008H         SYMBOL        i
+  D:0009H         SYMBOL        j
+  -------         ENDDO         
+  C:0800H         LINE#         259
+  C:0800H         LINE#         260
+  C:0800H         LINE#         263
+  C:0800H         LINE#         268
+  C:0803H         LINE#         271
+  C:0806H         LINE#         273
+  C:0822H         LINE#         275
+  C:082BH         LINE#         278
+  C:082EH         LINE#         281
+  C:0831H         LINE#         283
+  C:084BH         LINE#         285
+  C:0854H         LINE#         311
+  C:0857H         LINE#         314
+  C:085AH         LINE#         316
+  C:0877H         LINE#         318
+  C:0880H         LINE#         321
+  C:0883H         LINE#         324
+  C:0886H         LINE#         326
+  C:08A0H         LINE#         328
+  C:08A9H         LINE#         331
+  C:08B6H         LINE#         334
+  C:08B9H         LINE#         336
+  C:08D4H         LINE#         338
+  -------         ENDPROC       MAIN
+BL51 BANKED LINKER/LOCATER V6.05                                                      12/08/2021  00:00:57  PAGE 6
+
+
+  -------         ENDMOD        STATIC
+
+  -------         MODULE        ?C?IMUL
+  C:08D8H         PUBLIC        ?C?IMUL
+  -------         ENDMOD        ?C?IMUL
+
+  -------         MODULE        ?C?SIDIV
+  C:08EAH         PUBLIC        ?C?SIDIV
+  -------         ENDMOD        ?C?SIDIV
+
+  -------         MODULE        ?C?UIDIV
+  C:0920H         PUBLIC        ?C?UIDIV
+  -------         ENDMOD        ?C?UIDIV
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SHOW_595_CLEAR?STATIC
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SHOW_595_LINE?STATIC
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SHOW_595_YLINE?STATIC
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 02DAH BYTE (35%) *
+******************************************************************************
+
+Program Size: data=27.0 xdata=0 code=1016
+LINK/LOCATE RUN COMPLETE.  3 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,4 @@
+"STARTUP.obj",
+"static.obj" 
+TO "xianshi2" 
+RAMSIZE(256) 

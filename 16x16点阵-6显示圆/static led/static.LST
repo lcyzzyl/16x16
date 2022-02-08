@@ -1,0 +1,215 @@
+C51 COMPILER V7.50   STATIC                                                                12/09/2021 11:40:40 PAGE 1   
+
+
+C51 COMPILER V7.50, COMPILATION OF MODULE STATIC
+OBJECT MODULE PLACED IN static.OBJ
+COMPILER INVOKED BY: D:\Keil\C51\BIN\C51.EXE static.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          
+   2          /************************************************************************************/
+   3          /*     ³ÌÐòÃû£º16x16µãÕóÊÔÑé³ÌÐò                                                                                */
+   4          /*                                                                                  */
+   5          /*     CPUÐÍºÅ£ºAT89S52/STC89C51RC    ¾§Õñ£º12.0 M                                  */
+   6          /*                                                                                  */                    
+             -                         
+   7          /*                                                                                  */
+   8          /*     ¹¦ÄÜÃèÊö£º ¿ØÖÆ16x16LEDµãÕóÏÔÊ¾Í¼ÐÎ×ÖÄ¸ºº×ÖµÈ                                */
+   9          /*     ÐÐ  É¨    £º 74ls138x2 CPU P1¿ÚÇ°ËÄÎ» A P1^0      B  P1^1  C  P1^2   D  P1^3             */
+  10          /*     ÁÐÉ¨£¨Êý¾Ý£©£ºSCK P0^0 RCK P0^1 SER P0^2                                     */
+  11          /*     È¡Ä£·½Ê½£º    ÑôÂë ÖðÐÐÊ½  ÄæÏò£¨µÍÎ»ÔÚÇ°£©                                                                                                          */
+  12          /*                                                                                                                                                                  */
+  13          /*                                                      ¾«Ó¢ÍÅ¶Ó °æÈ¨ËùÓÐ           */                    
+             -             
+  14          /*                                                            2008-06-20            */
+  15          /************************************************************************************/ 
+  16          
+  17          #include<reg52.h>
+  18          #include<math.h>
+  19          
+  20          #define uchar unsigned char
+  21          #define uint unsigned int 
+  22           
+  23          
+  24          
+  25          sbit  P_HC595_SCK  =  P0^0;        // CPU  pin 1       SCK        Êý¾ÝÊäÈëÊ±ÖÓ
+  26          sbit  P_HC595_RCK  =  P0^1;        // CPU  pin 2       RCK        Êý¾ÝÊä³öÊ±ÖÓ
+  27          sbit  P_HC595_SER  =  P0^2;        // CPU  pin 3        SER       Êý¾ÝÊäÈë
+  28          
+  29          
+  30          uint  yanshi=500;
+  31          
+  32          
+  33          uchar code table[]=
+  34          {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f};
+  35          
+  36          uchar code table_col[]=
+  37          {0x80,0x00, 0x40,0x00, 0x20,0x00, 0x10,0x00, 0x08,0x00, 0x04,0x00, 0x02,0x00, 0x01,0x00, 0x00,0x80, 0x00,0
+             -x40,0x00,0x20,0x00,0x10,0x00,0x08,0x00,0x04,0x00,0x02,0x00,0x01};
+  38          
+  39          
+  40          
+  41          
+  42          
+  43           
+  44          
+  45          void delay(uint x)                      //ÑÓÊ±×Óº¯Êý
+  46          {       
+  47   1              uint i,j;
+  48   1              for(i=x;i>0;i--)
+  49   1                 for(j=50;j>0;j--);
+  50   1      }
+  51          
+  52          
+C51 COMPILER V7.50   STATIC                                                                12/09/2021 11:40:40 PAGE 2   
+
+  53           
+  54          
+  55          void Send_595(unsigned char dat)        //·¢ËÍÒ»¸ö×Ö½Ú
+  56          {                
+  57   1              unsigned char  i;
+  58   1              for(i=0; i<8; i++)
+  59   1              {
+  60   2                      if(dat & 0x01)           //Èç¹ûdatºÍ0x01ÓëµÄ½á¹ûÊÇ1£¬Ò²¾ÍÊÇÐèÒªledÁÁ£¬¾Í°ÑÊý¾ÝÎ»ÖÃ0£¬ 
+  61   2        
+  62   2      //  0000 0000 0000 1000
+  63   2      //  0000 0000 0000 0001
+  64   2      //  0000 0000 0000 0000
+  65   2      //  ÐèÒªÓÒÒÆ
+  66   2      //  µÚÒ»Î»»ñÈ¡µÄÊÇ0£¬ÓÉÓÚÊÇÒõÂë 0 Ê±ledÊÇ²»ÁÁµÄ£¬¸ù¾Ý595µÄ¹¤×÷Ô­ÀíºÍµçÂ·Ô­Àí£¬ËÍµÄÊý¾ÝÓ¦¸ÃÎª 1 £¬ËÍµ½µÚËÄÎ
+             -»Ê±£¬ÓëµÄ½á¹ûÎª1£¬£¬Êý¾ÝËÍ 0 ¡£
+  67   2      
+  68   2                                         P_HC595_SER = 0;         //Êý¾ÝÊÇ 0 Ê±£¬led ÁÁ
+  69   2                     else                             
+  70   2                                         P_HC595_SER = 1;        //Êý¾ÝÊÇ 1  Ê±£¬led²»ÁÁ                  
+  71   2                      
+  72   2                              // P_HC595_SER  =  dat & 0x80 ;   //È¡³ö×î¸ßÎ»
+  73   2                                      
+  74   2                                      P_HC595_SCK = 0;
+  75   2                              
+  76   2                                      //delay(1);
+  77   2      
+  78   2                      P_HC595_SCK = 1;
+  79   2      
+  80   2                      dat = dat >> 1;         //ÓÒÒÆ1Î»
+  81   2      
+  82   2      
+  83   2              }
+  84   1      
+  85   1              
+  86   1      }
+  87          
+  88          void Show_595_16(unsigned char dat1,dat2)  //ÏÔÊ¾Ò»ÐÐÊý¾Ý
+  89          
+  90          
+  91          {
+  92   1      
+  93   1             Send_595(dat2);    // ËÍÒ»ÐÐµÄ¸ßÎ»Êý¾Ý
+  94   1                 Send_595(dat1);        // ËÍÒ»ÐÐµÄµÍÎ»Êý¾Ý
+  95   1                                                        
+  96   1                 
+  97   1                 P_HC595_RCK = 1;       //Êý¾ÝËø´æ¸ßµçÆ½
+  98   1      
+  99   1                 P_HC595_RCK = 0;       //Êý¾ÝËø´æµÍµçÆ½
+ 100   1      
+ 101   1      
+ 102   1                  
+ 103   1      
+ 104   1      }  
+ 105           
+ 106          void Show_595_point(uint x,y)  //ÏÔÊ¾Ò»¸öµã
+ 107          
+ 108          {
+ 109   1      
+ 110   1       P1 = table[y];
+ 111   1      
+ 112   1       Show_595_16(table_col[2*x],table_col[2*x+1]);
+ 113   1      
+C51 COMPILER V7.50   STATIC                                                                12/09/2021 11:40:40 PAGE 3   
+
+ 114   1      
+ 115   1      
+ 116   1      
+ 117   1      }
+ 118          
+ 119          void Show_595_round(uint x,y,r)  //ÏÔÊ¾Ô²
+ 120          
+ 121          {
+ 122   1      
+ 123   1        unsigned int i,j;
+ 124   1      
+ 125   1        for (i=x-r;i<x+r;i++)
+ 126   1        
+ 127   1        
+ 128   1        {
+ 129   2                 
+ 130   2         
+ 131   2              Show_595_point(i,(sqrt(r*r+((i-x)*(i-x))+y)-r));
+ 132   2      
+ 133   2                        
+ 134   2         
+ 135   2         }
+ 136   1      
+ 137   1          
+ 138   1      
+ 139   1      }
+*** WARNING C280 IN LINE 123 OF STATIC.C: 'j': unreferenced local variable
+ 140          
+ 141          
+ 142           
+ 143            
+ 144          
+ 145          
+ 146          void main()
+ 147          {       
+ 148   1                 while(1)
+ 149   1      
+ 150   1                 {
+ 151   2      
+ 152   2                                unsigned int i,x,y,r,j;
+ 153   2      
+ 154   2                                x=8;y=8;r=7;
+ 155   2      
+ 156   2                   for (i=x-r;i<x+r;i++)
+ 157   2        
+ 158   2        
+ 159   2        {
+ 160   3                  
+ 161   3         
+ 162   3              Show_595_point(i,(sqrt(r*r+((i-x)*(i-x))+y)));
+ 163   3                      
+ 164   3                        
+ 165   3         
+ 166   3         }
+ 167   2      
+ 168   2         }
+ 169   1                   
+ 170   1                       
+ 171   1                              
+ 172   1                          
+ 173   1               
+ 174   1      
+C51 COMPILER V7.50   STATIC                                                                12/09/2021 11:40:40 PAGE 4   
+
+ 175   1                 
+ 176   1           
+ 177   1      
+ 178   1      }
+*** WARNING C280 IN LINE 152 OF STATIC.C: 'j': unreferenced local variable
+ 179          
+ 180          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    411    ----
+   CONSTANT SIZE    =     48    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2      20
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  2 WARNING(S),  0 ERROR(S)

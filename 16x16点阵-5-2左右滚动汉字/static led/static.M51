@@ -1,0 +1,311 @@
+BL51 BANKED LINKER/LOCATER V5.12                                                        12/10/2021  08:33:31  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V5.12, INVOKED BY:
+D:\KEIL\C51\BIN\BL51.EXE STARTUP.obj, static.obj TO static RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  STARTUP.obj (?C_STARTUP)
+  static.obj (STATIC)
+  D:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+  D:\KEIL\C51\LIB\C51S.LIB (?C?CLDOPTR)
+  D:\KEIL\C51\LIB\C51S.LIB (?C?OFFXADD)
+
+
+LINK MAP OF MODULE:  static (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0007H     UNIT         ?DT?_SHOW_595_BMP_UP?STATIC
+            DATA    000FH     0007H     UNIT         ?DT?_SHOW_595_BMP_DOWN?STATIC
+            DATA    0016H     0005H     UNIT         _DATA_GROUP_
+            DATA    001BH     0002H     UNIT         ?DT?STATIC
+            IDATA   001DH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0270H     UNIT         ?CO?STATIC
+            CODE    0273H     008CH     UNIT         ?C_C51STARTUP
+            CODE    02FFH     006CH     UNIT         ?PR?_SHOW_595_BMP_UP?STATIC
+            CODE    036BH     006CH     UNIT         ?PR?_SHOW_595_BMP_DOWN?STATIC
+            CODE    03D7H     004AH     UNIT         ?PR?_SHOW_595_BMP?STATIC
+            CODE    0421H     0039H     UNIT         ?C?LIB_CODE
+            CODE    045AH     0035H     UNIT         ?PR?_DELAY?STATIC
+            CODE    048FH     0035H     UNIT         ?PR?SHOW_595_CLEAR?STATIC
+            CODE    04C4H     0032H     UNIT         ?PR?_SEND_595?STATIC
+            CODE    04F6H     000BH     UNIT         ?PR?MAIN?STATIC
+            CODE    0501H     0005H     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   static (?C_STARTUP)
+
+
+SEGMENT                                 DATA_GROUP 
+  +--> CALLED SEGMENT                 START    LENGTH
+-----------------------------------------------------
+?C_C51STARTUP                         -----    -----
+  +--> ?PR?MAIN?STATIC
+  +--> ?C_INITSEG
+
+?PR?MAIN?STATIC                       -----    -----
+  +--> ?CO?STATIC
+  +--> ?PR?_SHOW_595_BMP?STATIC
+BL51 BANKED LINKER/LOCATER V5.12                                                      12/10/2021  08:33:31  PAGE 2
+
+
+
+?PR?_SHOW_595_BMP?STATIC              0016H    0005H
+  +--> ?PR?_SEND_595?STATIC
+  +--> ?PR?_DELAY?STATIC
+
+?PR?_DELAY?STATIC                     -----    -----
+  +--> ?CO?STATIC
+
+
+
+SYMBOL TABLE OF MODULE:  static (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:0273H         SEGMENT       ?C_C51STARTUP
+  I:001DH         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:0276H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0000H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:0273H         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         92
+  C:0273H         LINE#         99
+  C:0275H         LINE#         100
+  C:0276H         LINE#         101
+  C:0277H         LINE#         102
+  C:0279H         LINE#         151
+  C:027CH         LINE#         155
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        STATIC
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  C:0003H         PUBLIC        table
+  D:00A8H         PUBLIC        IE
+  C:048FH         PUBLIC        Show_595_clear
+BL51 BANKED LINKER/LOCATER V5.12                                                      12/10/2021  08:33:31  PAGE 3
+
+
+  D:001BH         PUBLIC        speed
+  D:00B8H         PUBLIC        IP
+  B:0080H.1       PUBLIC        P_HC595_RCK
+  B:0080H.0       PUBLIC        P_HC595_SCK
+  C:04F6H         PUBLIC        main
+  C:03D7H         PUBLIC        _Show_595_bmp
+  B:0080H.2       PUBLIC        P_HC595_SER
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  C:036BH         PUBLIC        _Show_595_bmp_down
+  C:0013H         PUBLIC        hanzi1
+  C:0153H         PUBLIC        hanzi2
+  D:00C8H         PUBLIC        T2CON
+  C:02FFH         PUBLIC        _Show_595_bmp_up
+  C:04DDH         PUBLIC        _Send_595
+  C:0471H         PUBLIC        _delay
+  D:00D0H         PUBLIC        PSW
+  C:045AH         SYMBOL        L?0048
+  -------         PROC          L?0047
+  -------         ENDPROC       L?0047
+  C:045AH         SYMBOL        L?0048
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        x
+  -------         DO            
+  D:0006H         SYMBOL        i
+  D:0004H         SYMBOL        j
+  -------         ENDDO         
+  C:0471H         LINE#         144
+  C:0471H         LINE#         145
+  C:0471H         LINE#         147
+  C:047AH         LINE#         148
+  C:048EH         LINE#         149
+  -------         ENDPROC       _DELAY
+  C:04D7H         SYMBOL        L?0050
+  -------         PROC          L?0049
+  -------         ENDPROC       L?0049
+  C:04D7H         SYMBOL        L?0050
+  -------         PROC          _SEND_595
+  D:0007H         SYMBOL        dat
+  -------         DO            
+  D:0006H         SYMBOL        i
+  -------         ENDDO         
+  C:04DDH         LINE#         156
+  C:04DDH         LINE#         157
+  C:04DDH         LINE#         159
+  C:04DFH         LINE#         160
+  C:04DFH         LINE#         161
+  C:04E3H         LINE#         169
+  C:04E7H         LINE#         171
+  C:04E9H         LINE#         175
+  C:04EBH         LINE#         177
+  C:04EDH         LINE#         179
+  C:04F1H         LINE#         182
+  C:04F5H         LINE#         185
+  -------         ENDPROC       _SEND_595
+  -------         PROC          _SHOW_595_BMP
+  D:0016H         SYMBOL        dat
+BL51 BANKED LINKER/LOCATER V5.12                                                      12/10/2021  08:33:31  PAGE 4
+
+
+  -------         DO            
+  D:0019H         SYMBOL        j
+  D:001AH         SYMBOL        temp1
+  D:0003H         SYMBOL        temp2
+  -------         ENDDO         
+  C:03D7H         LINE#         189
+  C:03DDH         LINE#         192
+  C:03DDH         LINE#         196
+  C:03E0H         LINE#         197
+  C:03E0H         LINE#         200
+  C:03F6H         LINE#         201
+  C:0403H         LINE#         204
+  C:0406H         LINE#         205
+  C:040BH         LINE#         208
+  C:040DH         LINE#         210
+  C:040FH         LINE#         214
+  C:0414H         LINE#         216
+  C:0417H         LINE#         222
+  C:0420H         LINE#         224
+  -------         ENDPROC       _SHOW_595_BMP
+  -------         PROC          _SHOW_595_BMP_UP
+  D:0008H         SYMBOL        dat
+  -------         DO            
+  D:000BH         SYMBOL        i
+  D:000CH         SYMBOL        j
+  D:000DH         SYMBOL        k
+  D:000EH         SYMBOL        temp1
+  D:0003H         SYMBOL        temp2
+  -------         ENDDO         
+  C:02FFH         LINE#         230
+  C:0305H         LINE#         233
+  C:0305H         LINE#         238
+  C:0308H         LINE#         240
+  C:0315H         LINE#         242
+  C:0315H         LINE#         246
+  C:0318H         LINE#         247
+  C:0318H         LINE#         249
+  C:0336H         LINE#         250
+  C:033FH         LINE#         253
+  C:0342H         LINE#         254
+  C:0347H         LINE#         257
+  C:0349H         LINE#         259
+  C:034BH         LINE#         263
+  C:0350H         LINE#         265
+  C:0353H         LINE#         271
+  C:035CH         LINE#         274
+  C:036AH         LINE#         276
+  -------         ENDPROC       _SHOW_595_BMP_UP
+  -------         PROC          _SHOW_595_BMP_DOWN
+  D:000FH         SYMBOL        dat
+  -------         DO            
+  D:0012H         SYMBOL        i
+  D:0013H         SYMBOL        j
+  D:0014H         SYMBOL        k
+  D:0015H         SYMBOL        temp1
+  D:0003H         SYMBOL        temp2
+  -------         ENDDO         
+BL51 BANKED LINKER/LOCATER V5.12                                                      12/10/2021  08:33:31  PAGE 5
+
+
+  C:036BH         LINE#         282
+  C:0371H         LINE#         285
+  C:0371H         LINE#         290
+  C:0374H         LINE#         292
+  C:0381H         LINE#         294
+  C:0381H         LINE#         298
+  C:0384H         LINE#         299
+  C:0384H         LINE#         301
+  C:03A2H         LINE#         302
+  C:03ABH         LINE#         305
+  C:03AEH         LINE#         306
+  C:03B3H         LINE#         309
+  C:03B5H         LINE#         311
+  C:03B7H         LINE#         315
+  C:03BCH         LINE#         317
+  C:03BFH         LINE#         323
+  C:03C8H         LINE#         326
+  C:03D6H         LINE#         328
+  -------         ENDPROC       _SHOW_595_BMP_DOWN
+  -------         PROC          SHOW_595_CLEAR
+  -------         DO            
+  D:0003H         SYMBOL        j
+  -------         ENDDO         
+  C:048FH         LINE#         338
+  C:048FH         LINE#         340
+  C:048FH         LINE#         344
+  C:0491H         LINE#         345
+  C:0491H         LINE#         349
+  C:0496H         LINE#         350
+  C:049BH         LINE#         353
+  C:049DH         LINE#         355
+  C:049FH         LINE#         358
+  C:04B8H         LINE#         360
+  C:04BFH         LINE#         365
+  C:04C3H         LINE#         367
+  -------         ENDPROC       SHOW_595_CLEAR
+  -------         PROC          MAIN
+  C:04F6H         LINE#         372
+  C:04F6H         LINE#         373
+  C:04F6H         LINE#         376
+  C:04F6H         LINE#         388
+  C:04FFH         LINE#         397
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        STATIC
+
+  -------         MODULE        ?C?CLDOPTR
+  C:0421H         PUBLIC        ?C?CLDOPTR
+  -------         ENDMOD        ?C?CLDOPTR
+
+  -------         MODULE        ?C?OFFXADD
+  C:044EH         PUBLIC        ?C?OFFXADD
+  -------         ENDMOD        ?C?OFFXADD
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SHOW_595_BMP_UP?STATIC
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+BL51 BANKED LINKER/LOCATER V5.12                                                      12/10/2021  08:33:31  PAGE 6
+
+
+    SEGMENT: ?PR?_SHOW_595_BMP_DOWN?STATIC
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SHOW_595_CLEAR?STATIC
+
+Program Size: data=30.0 xdata=0 code=1286
+LINK/LOCATE RUN COMPLETE.  3 WARNING(S),  0 ERROR(S)
